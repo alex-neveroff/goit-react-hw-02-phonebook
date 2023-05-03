@@ -3,7 +3,13 @@ import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
     name: '',
     number: '',
   };
@@ -25,15 +31,20 @@ class App extends Component {
     }));
   };
 
-  reset = () => {
-    this.setState({ name: '' });
+  handleFilter = event => {
+    this.setState({ filter: event.currentTarget.value });
   };
 
   inputNameId = nanoid();
   inputPhoneId = nanoid();
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const filtredContacts = contacts.filter(contact => {
+      const lowerName = contact.name.toLowerCase();
+      const lowerFolter = filter.toLowerCase();
+      return lowerName.includes(lowerFolter);
+    });
     return (
       <>
         <h1>Phonebook</h1>
@@ -65,8 +76,17 @@ class App extends Component {
           <button type="submit">Add contact</button>
         </form>
         <h2>Contacts</h2>
+        <label htmlFor="filter-field">
+          Find contacts by name
+          <input
+            id="filter-field"
+            type="text"
+            value={filter}
+            onChange={this.handleFilter}
+          />
+        </label>
         <ul>
-          {contacts.map(({ id, name, number }) => (
+          {filtredContacts.map(({ id, name, number }) => (
             <li key={id} id={id} name={name} number={number}>
               {name}: {number}
             </li>
