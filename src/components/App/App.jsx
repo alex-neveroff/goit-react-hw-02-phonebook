@@ -15,7 +15,22 @@ class App extends Component {
     filter: '',
   };
 
+  isContactExists = newContact => {
+    const { contacts } = this.state;
+    const loweredNewContact = newContact.name.toLowerCase();
+
+    const matchingContact = contacts.filter(contact => {
+      return contact.name.toLowerCase() === loweredNewContact;
+    });
+    return matchingContact.length > 0 ? true : false;
+  };
+
   addContact = newContact => {
+    if (this.isContactExists(newContact)) {
+      alert(`${newContact.name} is already in phonebook.`);
+      return;
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
@@ -33,16 +48,19 @@ class App extends Component {
 
   showContacts = () => {
     const { contacts, filter } = this.state;
-    return contacts.filter(contact => {
-      const lowerName = contact.name.toLowerCase();
-      const lowerFolter = filter.toLowerCase();
-      return lowerName.includes(lowerFolter);
-    });
+    const loweredFilter = filter.toLowerCase();
+    return contacts
+      .filter(contact => {
+        return contact.name.toLowerCase().includes(loweredFilter);
+      })
+      .sort((firstContact, secondContact) =>
+        firstContact.name.localeCompare(secondContact.name)
+      );
   };
 
   render() {
     const { filter } = this.state;
-    const filtredContacts = this.showContacts();
+    const visibleContacts = this.showContacts();
     return (
       <>
         <h1>Phonebook</h1>
@@ -51,7 +69,7 @@ class App extends Component {
         <h2>Contacts</h2>
         <SearchFilter filter={filter} onChange={this.handleFilter} />
 
-        <ContactList contacts={filtredContacts} />
+        <ContactList contacts={visibleContacts} />
       </>
     );
   }

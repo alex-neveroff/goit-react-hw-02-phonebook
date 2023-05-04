@@ -24,6 +24,7 @@ class ContactForm extends Component {
 
     this.props.onSubmit(newContact);
     this.reset();
+    this.handleChange();
   };
 
   reset = () => {
@@ -43,6 +44,7 @@ class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             onChange={this.handleChange}
+            value={this.state.name}
           />
         </label>
         <label htmlFor={this.inputPhoneId}>
@@ -55,6 +57,7 @@ class ContactForm extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             onChange={this.handleChange}
+            value={this.state.number}
           />
         </label>
         <button type="submit">Add contact</button>
