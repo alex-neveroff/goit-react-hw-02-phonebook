@@ -40,7 +40,7 @@ class App extends Component {
 
   deleteContact = contactId => {
     const { contacts } = this.state;
-    const contactName = contacts.find(contact => contact.id !== contactId);
+    const contactName = contacts.find(contact => contact.id === contactId);
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
