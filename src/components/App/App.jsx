@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import SearchFilter from 'components/SearchFilter';
+import { Container, MainTitle, SubTitle } from './App.styled';
 
 class App extends Component {
   state = {
@@ -36,11 +36,11 @@ class App extends Component {
     }));
   };
 
-  // deleteContact = todoId => {
-  //   this.setState(prevState => ({
-  //     todos: prevState.todos.filter(todo => todo.id !== todoId),
-  //   }));
-  // };
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
 
   handleFilter = event => {
     this.setState({ filter: event.currentTarget.value });
@@ -62,15 +62,15 @@ class App extends Component {
     const { filter } = this.state;
     const visibleContacts = this.showContacts();
     return (
-      <>
-        <h1>Phonebook</h1>
+      <Container>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
+        <SubTitle>Contacts</SubTitle>
         <SearchFilter filter={filter} onChange={this.handleFilter} />
 
-        <ContactList contacts={visibleContacts} />
-      </>
+        <ContactList contacts={visibleContacts} onDelete={this.deleteContact} />
+      </Container>
     );
   }
 }

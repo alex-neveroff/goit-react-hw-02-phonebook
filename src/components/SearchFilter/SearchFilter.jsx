@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import { Label, Field } from 'components/SearchFilter/SearchFilter.styled';
 
 const SearchFilter = ({ filter, onChange }) => {
   return (
-    <label htmlFor="filter-field">
+    <Label htmlFor="filter-field">
       Find contacts by name
-      <input id="filter-field" type="text" value={filter} onChange={onChange} />
-    </label>
+      <Field id="filter-field" type="text" value={filter} onChange={onChange} />
+    </Label>
   );
 };
 
