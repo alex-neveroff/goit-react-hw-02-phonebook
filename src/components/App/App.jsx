@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Notify } from 'notiflix';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import SearchFilter from 'components/SearchFilter';
@@ -27,19 +28,23 @@ class App extends Component {
 
   addContact = newContact => {
     if (this.isContactExists(newContact)) {
-      alert(`${newContact.name} is already in phonebook.`);
+      Notify.failure(`${newContact.name} is already in phonebook.`);
       return;
     }
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
+    Notify.success(`${newContact.name} added to phonebook successfully!`);
   };
 
   deleteContact = contactId => {
+    const { contacts } = this.state;
+    const contactName = contacts.find(contact => contact.id !== contactId);
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
+    Notify.warning(`${contactName.name} delete from phonebook.`);
   };
 
   handleFilter = event => {
