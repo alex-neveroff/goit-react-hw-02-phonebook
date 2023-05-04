@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({ filter: event.currentTarget.value });
   };
 
-  filtred = () => {
+  showContacts = () => {
     const { contacts, filter } = this.state;
     return contacts.filter(contact => {
       const lowerName = contact.name.toLowerCase();
@@ -42,7 +42,7 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-    const filtredContacts = this.filtred();
+    const filtredContacts = this.showContacts();
     return (
       <>
         <h1>Phonebook</h1>
