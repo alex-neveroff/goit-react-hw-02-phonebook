@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { transitions } from 'Variables/transitions';
+import { colors } from 'Variables/colors';
 
 export const PhonebookForm = styled.form`
   display: flex;
@@ -20,10 +22,10 @@ export const Field = styled.input`
   padding-left: 10px;
   border: none;
   border-radius: 7px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 0px 10px ${colors.mainShadow};
+  transition: box-shadow ${transitions.transition};
   &:focus {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 10px ${colors.darkShadow};
     outline: none;
   }
 `;
@@ -33,20 +35,20 @@ export const SubmitContact = styled.button`
   border: none;
   border-radius: 7px;
   margin-top: 15px;
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  background-color: ${colors.mainShadow};
+  box-shadow: 5px 5px 5px ${colors.mainShadow};
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow ${transitions.transition},
+    background-color ${transitions.transition},
+    transform ${transitions.transition};
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    background-color: ${colors.mainShadow};
+    box-shadow: 5px 5px 5px ${colors.focusShadow};
   }
   &:active {
     transform: scale(0.95);
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 2px 2px ${colors.focusShadow};
   }
 `;

@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { transitions } from 'Variables/transitions';
+import { colors } from 'Variables/colors';
 
 export const ContactsItem = styled.li`
   display: grid;
@@ -24,16 +26,16 @@ export const DeleteButton = styled.button`
   background-color: transparent;
   justify-self: end;
   color: red;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color ${transitions.transition},
+    box-shadow ${transitions.transition};
 
   &:hover,
   &:focus {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 15px ${colors.focusShadow};
     outline: none;
   }
   &:active {
-    color: rgba(0, 0, 0, 0.3);
+    color: ${colors.mainShadow};
   }
 `;
 

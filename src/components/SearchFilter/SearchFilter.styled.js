@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { colors } from 'Variables/colors';
+import { transitions } from 'Variables/transitions';
 
 export const Label = styled.label`
   display: flex;
@@ -14,10 +16,10 @@ export const Field = styled.input`
   margin-bottom: 20px;
   border: none;
   border-radius: 7px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 0px 10px ${colors.mainShadow};
+  transition: box-shadow ${transitions.transition};
   &:focus {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 10px ${colors.darkShadow};
     outline: none;
   }
 `;
